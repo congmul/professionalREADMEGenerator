@@ -56,26 +56,25 @@ inquirer
     .then(function (response) {
         console.log(response);
 
-        const projectInformation = `
-        #${response.projectName}
+        const projectInformation = `# ${response.projectName}
+## Installation 
+To install necessary dependencies, run the following command:
+${response.installDependencies}
 
-        ## Installation
-        ${response.installDependencies}
+## Usage
+${response.description}
 
-        ## Usage
-        ${response.description}
+## License
+${response.license}
 
-        ## License
-        ${response.license}
+## Contributor
+${response.username} : ${response.emailAddress}
 
-        ## Contributor
-        ${response.username} : ${response.emailAddress}
-
-        ## Contributoring
-        ${response.contributing}
+## Contributoring
+${response.contributing}
         `
-
-        fs.writeFile(README.md, projectInformation, function (err) {
+        console.log(projectInformation);
+        fs.writeFile('README.md', projectInformation, function (err) {
 
             if (err) {
                 return console.log(err);
