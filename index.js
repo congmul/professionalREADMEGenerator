@@ -1,5 +1,17 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const license = {
+    "MIT" : "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
+    "ISC" : "[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)",
+    "Apache" : "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)",
+    "Eclipse" : "[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)",
+    "IBM" : "[![License: IPL 1.0](https://img.shields.io/badge/License-IPL%201.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)",
+    "Perl" : "[![License: Artistic-2.0](https://img.shields.io/badge/License-Perl-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)",
+    "Mozilla" : "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)",
+    "Zlib" : "[![License: Zlib](https://img.shields.io/badge/License-Zlib-lightgrey.svg)](https://opensource.org/licenses/Zlib)",
+    "Unlicense" : "[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)"
+};
+let licenseStr = "";
 
 inquirer
     .prompt([
@@ -7,6 +19,22 @@ inquirer
             type: "input",
             message: "What is your GitHub username?",
             name: "username"
+        },
+        {
+            type: "checkbox",
+            message: "What kid of license should your project have?",
+            name: "license",
+            choices: [
+                "MIT",
+                "ISC",
+                "Apache",
+                "Eclipse",
+                "IBM",
+                "Perl",
+                "Mozilla",
+                "Zlib",
+                "Unlicense"
+            ]
         },
         {
             type: "input",
@@ -24,15 +52,6 @@ inquirer
             name: "description"
         }, 
         {
-            type: "checkbox",
-            message: "What kid of license should your project have?",
-            name: "license",
-            choices: [
-                "MIT",
-                "None"
-            ]
-        },
-        {
             type: "input",
             message: "What commnad should be run to install dependencies?",
             name: "installDependencies"
@@ -41,38 +60,34 @@ inquirer
             type: "input",
             message: "What commnad should be run to run tests?",
             name: "runTest"
-        },
-        {
-            type: "input",
-            message: "What does the user need to know about using the repo?",
-            name: "repo"
-        },
-        {
-            type: "input",
-            message: "What does the user need to know about contributing to the repo?",
-            name: "contributing"
         }
     ])
     .then(function (response) {
-        console.log(response);
+        
+        response.license.forEach(element => {
+            licenseStr += license[element] + " ";
+        });
 
         const projectInformation = `# ${response.projectName}
-## Installation 
-To install necessary dependencies, run the following command:
-${response.installDependencies}
+${licenseStr}
+
+## Description
+${response.description}
 
 ## Usage
 ${response.description}
 
-## License
-${response.license}
+## Installation 
+To install necessary dependencies, run the following command:
+${response.installDependencies}
 
-## Contributor
-${response.username} : ${response.emailAddress}
+## Test 
+${response.runTest}
 
 ## Contributoring
-${response.contributing}
-        `
+Contact me by email : ${response.emailAddress} <br>
+Contact me by gitHub : <a href="https://github.com/${response.username}">${response.username}</a>`;
+
         console.log(projectInformation);
         fs.writeFile('README.md', projectInformation, function (err) {
 
