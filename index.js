@@ -53,6 +53,11 @@ inquirer
         }, 
         {
             type: "input",
+            message: "Please write a usage of your project?",
+            name: "usage"
+        }, 
+        {
+            type: "input",
             message: "What commnad should be run to install dependencies?",
             name: "installDependencies"
         },
@@ -75,7 +80,7 @@ ${licenseStr}
 ${response.description}
 
 ## Usage
-${response.description}
+${response.usage}
 
 ## Installation 
 To install necessary dependencies, run the following command:
