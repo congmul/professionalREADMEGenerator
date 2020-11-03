@@ -5,7 +5,9 @@
 You can quickly and easily generate a README file by using a command-line application to generate one. This allows the project creator to devote more time working on the project.
 
 ## Usage
-Node index.js to run this program
+Node index.js to run this program <br>
+<img src="./img/operation01.png" width ="600"><br>
+<img src="./img/operation02.png" width ="600">
 
 ## Installation 
 To install necessary dependencies, run the following command:
