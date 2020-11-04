@@ -76,6 +76,13 @@ inquirer
         const projectInformation = `# ${response.projectName}
 ${licenseStr}
 
+## Table of Contents
+1. [Description](#Description)
+2. [Usage](#Usage)
+3. [Installation](#Installation)
+4. [Test](#Test)
+5. [Contributoring](#Contributoring)
+
 ## Description
 ${response.description}
 
