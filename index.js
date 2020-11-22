@@ -101,7 +101,7 @@ Contact me by email : ${response.emailAddress} <br>
 Contact me by gitHub : <a href="https://github.com/${response.username}">${response.username}</a>`;
 
         console.log(projectInformation);
-        fs.writeFile('README.md', projectInformation, function (err) {
+        fs.writeFile('READMEout.md', projectInformation, function (err) {
 
             if (err) {
                 return console.log(err);
